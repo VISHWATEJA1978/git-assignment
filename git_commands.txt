@@ -1,0 +1,93 @@
+===========================================================
+              GIT COMMANDS USED IN THIS ASSIGNMENT
+===========================================================
+
+--- Step 1: Local Repository Setup ---
+
+1. git init
+   Initializes a new empty Git repository in the current project folder.
+   Creates the hidden .git directory that tracks all version control data.
+
+2. git add .
+   Stages all new and modified files in the current directory for the next commit.
+   The dot (.) means "add everything" in the working directory.
+
+3. git commit -m "Initial commit: Add index.html and about.html"
+   Records the staged changes as a new commit (snapshot) in the repository history.
+   The -m flag allows writing the commit message inline.
+
+--- Step 2: Git Workflow (Branching and Merging) ---
+
+4. git add .
+   Stages the modified index.html file after adding navigation and footer.
+
+5. git commit -m "Update index.html: Add navigation bar and footer"
+   Creates the second commit capturing the changes made to index.html.
+
+6. git branch feature
+   Creates a new branch named "feature" based on the current commit.
+   This does not switch to the new branch automatically.
+
+7. git checkout feature
+   Switches the working directory to the "feature" branch.
+   All subsequent commits will be recorded on this branch.
+
+8. git add .
+   Stages the modified about.html file on the feature branch.
+
+9. git commit -m "Feature: Add team section to about.html"
+   Commits the changes made on the feature branch.
+
+10. git checkout main
+    Switches back to the main branch from the feature branch.
+
+11. git merge feature -m "Merge feature branch into main"
+    Merges all commits from the feature branch into the main branch.
+    This integrates the feature branch work into the main codebase.
+
+12. git log --oneline --graph --all
+    Displays the commit history in a compact, graphical format.
+    --oneline: shows each commit on a single line.
+    --graph: draws a text-based graph of the branch structure.
+    --all: shows commits from all branches, not just the current one.
+
+--- Step 3: .gitignore Implementation ---
+
+13. git status
+    Shows the current state of the working directory and staging area.
+    Used here to verify that .log files and temp/ folder are being ignored.
+
+14. git add .gitignore
+    Stages the newly created .gitignore file for commit.
+
+15. git commit -m "Add .gitignore to ignore .log files and temp folder"
+    Commits the .gitignore file so the ignore rules are tracked in version control.
+
+--- Step 4: Undo Operation ---
+
+16. git commit -m "Temporary commit: Add comment to index.html (to be undone)"
+    Creates an additional commit that will be undone in the next step.
+
+17. git reset --soft HEAD~1
+    Undoes the last commit while keeping the changes in the staging area.
+    HEAD~1 refers to one commit before the current HEAD.
+    --soft means changes remain staged (not lost), only the commit is removed.
+
+18. git restore --staged index.html
+    Removes the file from the staging area (unstages it).
+    The file changes remain in the working directory.
+
+19. git checkout -- index.html
+    Discards the unstaged changes in index.html, restoring it to the last committed version.
+
+--- Step 5: GitHub Integration ---
+
+20. git remote add origin https://github.com/<username>/git-assignment.git
+    Connects the local repository to a remote GitHub repository.
+    "origin" is the conventional name for the primary remote.
+
+21. git push -u origin main
+    Pushes the main branch and all its commits to the remote GitHub repository.
+    The -u flag sets "origin main" as the default upstream for future pushes.
+
+===========================================================
