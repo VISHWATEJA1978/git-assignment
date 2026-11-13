@@ -82,7 +82,7 @@
 
 --- Step 5: GitHub Integration ---
 
-20. git remote add origin https://github.com/<username>/git-assignment.git
+20. git remote add origin https://github.com/VISHWATEJA1978/git-assignment.git
     Connects the local repository to a remote GitHub repository.
     "origin" is the conventional name for the primary remote.
 
@@ -91,3 +91,4 @@
     The -u flag sets "origin main" as the default upstream for future pushes.
 
 ===========================================================
+
