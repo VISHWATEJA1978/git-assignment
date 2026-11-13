@@ -1,94 +1,110 @@
-===========================================================
-              GIT COMMANDS USED IN THIS ASSIGNMENT
-===========================================================
+================================================================================
+COURSEWORK EXECUTION LOG: GIT CLI INVOCATIONS & FUNCTIONAL EXPLANATIONS
+Candidate: Vishwa Teja | GitHub: https://github.com/VISHWATEJA1978/git-assignment
+================================================================================
 
---- Step 1: Local Repository Setup ---
+[PHASE 1: WORKSPACE INITIALIZATION & LOCAL REPOSITORY SETUP]
 
-1. git init
-   Initializes a new empty Git repository in the current project folder.
-   Creates the hidden .git directory that tracks all version control data.
+01. git init
+    - Purpose & Mechanism: Establishes internal version-tracking infrastructure within the
+      active working directory by creating the '.git' administrative metadata tree.
+    - Contextual Application: Executed locally in the 'git-assignment' folder containing 
+      index.html and about.html prior to any remote repository association.
 
-2. git add .
-   Stages all new and modified files in the current directory for the next commit.
-   The dot (.) means "add everything" in the working directory.
+02. git add .
+    - Purpose & Mechanism: Collects all unindexed modifications and newly discovered files
+      in the current tree, registering their blob hashes into the staging index.
+    - Contextual Application: Staged the newly created HTML baseline documents for the initial snapshot.
 
-3. git commit -m "Initial commit: Add index.html and about.html"
-   Records the staged changes as a new commit (snapshot) in the repository history.
-   The -m flag allows writing the commit message inline.
+03. git commit -m "Initial commit: Add index.html and about.html"
+    - Purpose & Mechanism: Binds the current staging index into a permanent snapshot node, 
+      advancing the HEAD reference with the specified descriptive log note.
+    - Contextual Application: Established root-commit 57a1e28 with baseline website structure.
 
---- Step 2: Git Workflow (Branching and Merging) ---
+[PHASE 2: INCREMENTAL EVOLUTION, BRANCH ISOLATION, AND INTEGRATION]
 
-4. git add .
-   Stages the modified index.html file after adding navigation and footer.
+04. git add .
+    - Purpose & Mechanism: Updates index metadata for files modified during the second sprint.
+    - Contextual Application: Staged the updated index.html featuring newly added navigation and footer tags.
 
-5. git commit -m "Update index.html: Add navigation bar and footer"
-   Creates the second commit capturing the changes made to index.html.
+05. git commit -m "Update index.html: Add navigation bar and footer"
+    - Purpose & Mechanism: Generates a parent-linked commit object capturing the navigation layout update.
+    - Contextual Application: Produced commit 5108dc8 along the primary development line.
 
-6. git branch feature
-   Creates a new branch named "feature" based on the current commit.
-   This does not switch to the new branch automatically.
+06. git branch feature
+    - Purpose & Mechanism: Allocates an isolated branch reference ('feature') pointing directly
+      at the active commit without altering the working directory's current HEAD state.
+    - Contextual Application: Partitioned upcoming feature development away from the stable main line.
 
-7. git checkout feature
-   Switches the working directory to the "feature" branch.
-   All subsequent commits will be recorded on this branch.
+07. git checkout feature
+    - Purpose & Mechanism: Diverts HEAD to the 'feature' branch pointer and synchronizes workspace state.
+    - Contextual Application: Shifted active context to implement non-disruptive about-page enhancements.
 
-8. git add .
-   Stages the modified about.html file on the feature branch.
+08. git add .
+    - Purpose & Mechanism: Indexes localized modifications made exclusively within the isolated branch.
+    - Contextual Application: Captured the newly introduced team roster block in about.html.
 
-9. git commit -m "Feature: Add team section to about.html"
-   Commits the changes made on the feature branch.
+09. git commit -m "Feature: Add team section to about.html"
+    - Purpose & Mechanism: Stores a feature commit whose parentage traces back along the branched branch-line.
+    - Contextual Application: Recorded commit 5f944cb safely isolated from main.
 
 10. git checkout main
-    Switches back to the main branch from the feature branch.
+    - Purpose & Mechanism: Redirects HEAD back to the primary integration branch in preparation for merge.
+    - Contextual Application: Restored main branch context to review integration readiness.
 
 11. git merge feature -m "Merge feature branch into main"
-    Merges all commits from the feature branch into the main branch.
-    This integrates the feature branch work into the main codebase.
+    - Purpose & Mechanism: Integrates the commits from 'feature' into 'main'; Git executed a fast-forward
+      pointer migration because 'main' had experienced no concurrent divergent commits.
+    - Contextual Application: Advanced main from 5108dc8 to 5f944cb, cleanly absorbing team roster changes.
 
 12. git log --oneline --graph --all
-    Displays the commit history in a compact, graphical format.
-    --oneline: shows each commit on a single line.
-    --graph: draws a text-based graph of the branch structure.
-    --all: shows commits from all branches, not just the current one.
+    - Purpose & Mechanism: Generates an ASCII visual representation mapping commit histories and branch pointers
+      across all existing references in single-line condensed format.
+    - Contextual Application: Validated linear progression and confirmed successful feature branch integration.
 
---- Step 3: .gitignore Implementation ---
+[PHASE 3: PATTERN EXCLUSION VIA ARTIFACT FILTERING]
 
 13. git status
-    Shows the current state of the working directory and staging area.
-    Used here to verify that .log files and temp/ folder are being ignored.
+    - Purpose & Mechanism: Inspects differences between the working tree, staging index, and active HEAD.
+    - Contextual Application: Verified that runtime artifacts ('app.log' and 'temp/') remained untracked.
 
 14. git add .gitignore
-    Stages the newly created .gitignore file for commit.
+    - Purpose & Mechanism: Places the exclusion pattern manifest into staging for versioning.
+    - Contextual Application: Prepared '.gitignore' containing rules for *.log and temp/.
 
 15. git commit -m "Add .gitignore to ignore .log files and temp folder"
-    Commits the .gitignore file so the ignore rules are tracked in version control.
+    - Purpose & Mechanism: Commits configuration rules ensuring repository hygiene is shared with peers.
+    - Contextual Application: Solidified repository exclusion policies under commit 4cfac4f.
 
---- Step 4: Undo Operation ---
+[PHASE 4: CONTROLLED REVERSION / UNDO VERIFICATION]
 
 16. git commit -m "Temporary commit: Add comment to index.html (to be undone)"
-    Creates an additional commit that will be undone in the next step.
+    - Purpose & Mechanism: Generated an ephemeral commit node (47533f7) specifically created to test rollback operations.
+    - Contextual Application: Simulated an accidental or unwanted commit prior to initiating soft-reset.
 
 17. git reset --soft HEAD~1
-    Undoes the last commit while keeping the changes in the staging area.
-    HEAD~1 refers to one commit before the current HEAD.
-    --soft means changes remain staged (not lost), only the commit is removed.
+    - Purpose & Mechanism: Repositions the HEAD pointer one generation backwards while strictly retaining
+      all associated modifications staged in the index (no working directory destruction).
+    - Contextual Application: Dissolved commit 47533f7 cleanly, returning index.html changes to staged status.
 
 18. git restore --staged index.html
-    Removes the file from the staging area (unstages it).
-    The file changes remain in the working directory.
+    - Purpose & Mechanism: Evicts specified file modifications from the staging index back to unindexed working tree state.
+    - Contextual Application: Unstaged experimental comment edits without deleting disk contents.
 
 19. git checkout -- index.html
-    Discards the unstaged changes in index.html, restoring it to the last committed version.
+    - Purpose & Mechanism: Replaces dirty working tree buffers with the clean version from the current commit object.
+    - Contextual Application: Restored index.html to pristine pre-experiment status.
 
---- Step 5: GitHub Integration ---
+[PHASE 5: REMOTE REPOSITORY SYNCHRONIZATION VIA GITHUB]
 
 20. git remote add origin https://github.com/VISHWATEJA1978/git-assignment.git
-    Connects the local repository to a remote GitHub repository.
-    "origin" is the conventional name for the primary remote.
+    - Purpose & Mechanism: Registers a remote endpoint alias ('origin') linking local Git operations to GitHub's HTTPS gateway.
+    - Contextual Application: Bound local workspace to public GitHub repository https://github.com/VISHWATEJA1978/git-assignment.
 
 21. git push -u origin main
-    Pushes the main branch and all its commits to the remote GitHub repository.
-    The -u flag sets "origin main" as the default upstream for future pushes.
+    - Purpose & Mechanism: Transmits local commit objects to the remote server and configures upstream tracking associations.
+    - Contextual Application: Synchronized all commit histories to the public GitHub cloud repository.
 
-===========================================================
-
+================================================================================
+Log generated and verified for academic submission.
+================================================================================
